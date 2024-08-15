@@ -2,6 +2,9 @@ import pyspark as ps
 import pyspark.sql.functions as F
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
+from schema_repository import schema_repository
+from schema_type import schema_type
+
 if __name__ == "__main__":
     print("Hello World!")
 
@@ -27,11 +30,11 @@ if __name__ == "__main__":
     "Postal Code": 2065
     }"""
 
-    data = [["Maral", "Pour", address1],
-            ["Hossein", "Bakh", address2]]
+    data = [["Maral", "Pourdayan", address1, ["Databricks Data Engineer","Databricks Spark Developer"]],
+            ["Hossein", "Bakhtiari", address2, ["Google Cloud Platform Professional Data Engineer", "Azure Data Engineer"]]]
 
     # giving column names of dataframe
-    columns = ["Name", "Family", "Address"]
+    columns = ["Name", "Family", "Address", "Certificate"]
 
     # creating a dataframe
     dataframe = spark.createDataFrame(data, columns)
@@ -39,17 +42,12 @@ if __name__ == "__main__":
     # show data frame
     dataframe.show(truncate=False)
 
-    schema = StructType([
-        StructField("Unit", IntegerType(), True),
-        StructField("Street No", IntegerType(), True),
-        StructField("Street Name", StringType(), True),
-        StructField("Suburb", StringType(), True),
-        StructField("State", StringType(), True),
-        StructField("Postal Code", IntegerType(), True)
-    ])
+    repo = schema_repository()
+
+    schema = repo.get(schema_type.ADDRESS)
 
     df = (dataframe
           .withColumn("adr", F.from_json(F.col("Address"), schema))
-          .select(F.col("Name"), F.col("Family"), F.col("adr.*")))
+          .select(F.col("Name"), F.col("Family"), F.col("adr.*"), F.explode(F.col("Certificate"))))
 
     df.show(truncate=False)
