@@ -1,12 +1,12 @@
 from my_types import SchemaEnum
-from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DateType
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DateType, ArrayType
 
 
 class SchemaRepository:
     def __init__(self):
         pass
 
-    def get(self, type: SchemaEnum) -> StructType:
+    def getSchema(self, type: SchemaEnum) -> StructType:
         match type:
             case SchemaEnum.ADDRESS:
                 schema = StructType([
@@ -18,11 +18,13 @@ class SchemaRepository:
                     StructField("Postal Code", IntegerType(), True)
                 ])
             case SchemaEnum.CITIZENSHIP:
-                schema = StructType([
+                inner_schema = StructType([
                     StructField("Country", StringType(), True),
-                    StructField("From date", DateType(), True),
+                    StructField("From Date", DateType(), True),
                     StructField("Type", StringType(), True),
                 ])
+
+                schema = ArrayType(inner_schema, True)
             case _:
                 raise NotImplemented
         return schema

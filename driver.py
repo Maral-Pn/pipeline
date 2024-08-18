@@ -24,8 +24,9 @@ if __name__ == "__main__":
 
     repo = SchemaRepository()
 
-    schema = repo.get(SchemaEnum.ADDRESS)
+    address_schema = repo.getSchema(SchemaEnum.ADDRESS)
+    citizenship_schema = repo.getSchema(SchemaEnum.CITIZENSHIP)
 
-    df = Transformer(spark).transformDataframe(dataframe, schema)
+    df = Transformer(spark).transformDataframe(dataframe, address_schema, citizenship_schema)
 
     df.show(truncate=False)
