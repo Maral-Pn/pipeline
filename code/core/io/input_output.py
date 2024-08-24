@@ -3,28 +3,30 @@ class InputOutput():
     def __init__(self, spark: SparkSession):
         self.spark = spark
 
-    def getDummyData(self) -> DataFrame:
-        address1 = """
-        {
-            "Unit": 13,
-            "Street No": 1,
-            "Street Name": "Citrus Avenue",
-            "Suburb": "Hornsby",
-            "State": "NSW",
-            "Postal Code": 2077
-        }"""
+    def getDummyAddress(self) -> list[str]:
+        address = ["""
+                {
+                    "Unit": 13,
+                    "Street No": 1,
+                    "Street Name": "Citrus Avenue",
+                    "Suburb": "Hornsby",
+                    "State": "NSW",
+                    "Postal Code": 2077
+                }""",
 
-        address2 = """
-        {
-            "Unit": 612,
-            "Street No": 3,
-            "Street Name": "Herbert",
-            "Suburb": "St Leonards",
-            "State": "NSW",
-            "Postal Code": 2065
-        }"""
+        """
+                {
+                    "Unit": 612,
+                    "Street No": 3,
+                    "Street Name": "Herbert",
+                    "Suburb": "St Leonards",
+                    "State": "NSW",
+                    "Postal Code": 2065
+                }"""]
+        return address
 
-        citizenship1 = """
+    def getDummyCitizenship(self):
+        return ["""
         [
             {
                 "Country": "Iran",
@@ -33,24 +35,27 @@ class InputOutput():
             }
         ]
         """
+        ,"""
+            [
+                {
+                    "Country": "Iran",
+                    "From Date": "1987-12-05",
+                    "Type": "BIRTH"
+                },
+                {
+                    "Country": "Australia",
+                    "From Date": "2024-10-01",
+                    "Type": "CONFERRAL"
+                }
+            ]
+            """]
+    def getDummyData(self) -> DataFrame:
+        address = self.getDummyAddress()
 
-        citizenship2 = """
-        [
-            {
-                "Country": "Iran",
-                "From Date": "1987-12-05",
-                "Type": "BIRTH"
-            },
-            {
-                "Country": "Australia",
-                "From Date": "2024-10-01",
-                "Type": "CONFERRAL"
-            }
-        ]
-        """
+        citizenship = self.getDummyCitizenship()
 
-        data = [["Maral", "Pourdayan", address1, citizenship1, ["Databricks Data Engineer", "Databricks Spark Developer"]],
-                ["Hossein", "Bakhtiari", address2, citizenship2,
+        data = [["Maral", "Pourdayan", address[0], citizenship[0], ["Databricks Data Engineer", "Databricks Spark Developer"]],
+                ["Hossein", "Bakhtiari", address[1], citizenship[1],
                  ["Google Cloud Platform Professional Data Engineer", "Azure Data Engineer"]]]
 
         columns = ["Name", "Family", "Address", "Citizenship", "Certificate"]
