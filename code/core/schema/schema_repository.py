@@ -1,4 +1,4 @@
-from core.schema.my_types import SchemaEnum
+from code.core.schema.my_types import SchemaEnum
 from pyspark.sql.types import StructType, StructField, LongType, StringType, DateType, ArrayType
 
 

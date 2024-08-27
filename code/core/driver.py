@@ -1,4 +1,4 @@
-from pipeline.my_pipeline import Pipeline
+from code.core.pipeline.my_pipeline import Pipeline
 
 if __name__ == "__main__":
 

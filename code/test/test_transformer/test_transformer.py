@@ -1,10 +1,10 @@
-from core.transform.transformer import Transformer
-from core.io.input_output import InputOutput
-from core.schema.schema_repository import SchemaRepository
-from core.schema.my_types import SchemaEnum
+from code.core.transform.transformer import Transformer
+from code.core.io.input_output import InputOutput
+from code.core.schema.schema_repository import SchemaRepository
+from code.core.schema.my_types import SchemaEnum
 import pyspark.sql.functions as F
 
-from test.test_base import TestBase
+from code.test.test_base import TestBase
 
 
 class TestTransformer(TestBase):

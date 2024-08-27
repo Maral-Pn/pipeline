@@ -1,10 +1,10 @@
 import pyspark as ps
 import pyspark.sql
 from pyspark.sql.dataframe import DataFrame
-from core.io.input_output import InputOutput
-from core.schema.schema_repository import SchemaRepository
-from core.schema.my_types import SchemaEnum
-from core.transform.transformer import Transformer
+from code.core.io.input_output import InputOutput
+from code.core.schema.schema_repository import SchemaRepository
+from code.core.schema.my_types import SchemaEnum
+from code.core.transform.transformer import Transformer
 
 class Pipeline:
 
