@@ -3,6 +3,7 @@ iniconfig==2.0.0
 numpy==1.24.1
 packaging==24.1
 pandas==2.2.2
+pipdeptree==2.23.1
 pluggy==1.5.0
 py4j==0.10.9.7
 pyarrow==17.0.0
