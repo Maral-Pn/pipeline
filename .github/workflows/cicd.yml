@@ -48,5 +48,5 @@ jobs:
     - name: Submit spark job locally
       run: |
          pwd
-         spark-submit --py-files core.zip code/jobs/driver.py
+         spark-submit --py-files code/core.zip code/jobs/driver.py
       
