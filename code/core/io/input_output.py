@@ -6,22 +6,22 @@ class InputOutput():
     def getDummyAddress(self) -> list[str]:
         address = ["""
                 {
-                    "Unit": 13,
-                    "Street No": 1,
-                    "Street Name": "Citrus Avenue",
-                    "Suburb": "Hornsby",
+                    "Unit": 1,
+                    "Street No": 41,
+                    "Street Name": "Evan Avenue",
+                    "Suburb": "Mosman",
                     "State": "NSW",
-                    "Postal Code": 2077
+                    "Postal Code": 1234
                 }""",
 
         """
                 {
-                    "Unit": 612,
-                    "Street No": 3,
-                    "Street Name": "Herbert",
-                    "Suburb": "St Leonards",
+                    "Unit": 54,
+                    "Street No": 87,
+                    "Street Name": "Dave",
+                    "Suburb": "Darling Point",
                     "State": "NSW",
-                    "Postal Code": 2065
+                    "Postal Code": 2341
                 }"""]
         return address
 
@@ -29,8 +29,8 @@ class InputOutput():
         return ["""
         [
             {
-                "Country": "Iran",
-                "From Date": "1993-05-31",
+                "Country": "Spain",
+                "From Date": "1990-01-11",
                 "Type": "BIRTH"
             }
         ]
@@ -38,13 +38,13 @@ class InputOutput():
         ,"""
             [
                 {
-                    "Country": "Iran",
-                    "From Date": "1987-12-05",
+                    "Country": "Portugal",
+                    "From Date": "1980-10-20",
                     "Type": "BIRTH"
                 },
                 {
                     "Country": "Australia",
-                    "From Date": "2024-10-01",
+                    "From Date": "2020-03-30",
                     "Type": "CONFERRAL"
                 }
             ]
