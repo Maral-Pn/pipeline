@@ -19,8 +19,8 @@ class TestTransformer(TestBase):
         citizenship = self.io.getDummyCitizenship()
 
         data = [
-            ["Maral", "Pourdayan", 13, 1, "Citrus Avenue", "Hornsby", "NSW", 2077, citizenship[0], ["Databricks Data Engineer", "Databricks Spark Developer"]],
-            ["Hossein", "Bakhtiari", 612, 3, "Herbert", "St Leonards", "NSW", 2065, citizenship[1],
+            ["Maral", "Pourdayan", 1, 41, "Evan Avenue", "Mosman", "NSW", 1234, citizenship[0], ["Databricks Data Engineer", "Databricks Spark Developer"]],
+            ["Hossein", "Bakhtiari", 54, 87, "Dave", "Darling Point", "NSW", 2341, citizenship[1],
              ["Google Cloud Platform Professional Data Engineer", "Azure Data Engineer"]]]
 
         columns = ["Name", "Family", "Unit", "Street No", "Street Name", "Suburb", "State", "Postal Code", "Citizenship", "Certificate"]
