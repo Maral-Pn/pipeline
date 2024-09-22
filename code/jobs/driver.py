@@ -3,6 +3,6 @@ from core.pipeline.my_pipeline import Pipeline
 if __name__ == "__main__":
 
     pipeline = Pipeline()
-    pipeline.initialiseSpark("local")
-    pipeline.runPipeline()
+    pipeline.initialise_spark("local")
+    pipeline.run_pipeline()
 
