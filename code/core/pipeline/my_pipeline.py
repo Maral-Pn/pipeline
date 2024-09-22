@@ -6,9 +6,10 @@ from core.schema.schema_repository import SchemaRepository
 from core.schema.my_types import SchemaEnum
 from core.transform.transformer import Transformer
 
+
 class Pipeline:
 
-    def initialiseSpark(self, master: str) -> pyspark.sql.SparkSession:
+    def initialise_spark(self, master: str) -> pyspark.sql.SparkSession:
         match master:
             case "local":
                 spark = ps.sql.SparkSession.builder.appName("Test").master("local[*]").getOrCreate()
@@ -16,30 +17,30 @@ class Pipeline:
                 spark = ps.sql.SparkSession.builder.appName("Test").master(m).getOrCreate()
         self.spark = spark
 
-    def runPipeline(self):
+    def run_pipeline(self):
         df = self.read()
         df_final = self.transform(df)
         self.write(df_final)
 
     def read(self) -> DataFrame:
-        dataframe = InputOutput(self.spark).getDummyData()
+        dataframe = InputOutput(self.spark).get_dummy_data()
         return dataframe
 
     def transform(self, dataframe: DataFrame) -> DataFrame:
         dataframe.show(truncate=False)
         repo = SchemaRepository()
 
-        address_schema = repo.getSchema(SchemaEnum.ADDRESS)
-        citizenship_schema = repo.getSchema(SchemaEnum.CITIZENSHIP)
+        address_schema = repo.get_schema(SchemaEnum.ADDRESS)
+        citizenship_schema = repo.get_schema(SchemaEnum.CITIZENSHIP)
 
         transformer = Transformer(self.spark)
-        df_adr = transformer.flattenAddress(dataframe, address_schema)
+        df_adr = transformer.flatten_address(dataframe, address_schema)
 
         df_adr.show(truncate=False)
-        df_ctz = transformer.flattenCitizenship(df_adr, citizenship_schema)
+        df_ctz = transformer.flatten_citizenship(df_adr, citizenship_schema)
 
         df_ctz.show(truncate=False)
-        df = transformer.getFinalDataframe(df_ctz)
+        df = transformer.get_final_dataframe(df_ctz)
 
         df.show(truncate=False)
         return df

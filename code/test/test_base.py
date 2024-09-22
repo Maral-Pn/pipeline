@@ -9,7 +9,7 @@ class TestBase(TestCase):
             SparkSession.builder.master("local[*]").appName("Tester").getOrCreate()
         )
 
-    def assertDataFrameEqual(self, dfA: DataFrame, dfB: DataFrame) -> None:
+    def assert_data_frame_equal(self, dfA: DataFrame, dfB: DataFrame) -> None:
         ts.assertSchemaEqual(dfA.schema, dfB.schema)
         ts.assertDataFrameEqual(dfA, dfB)
 

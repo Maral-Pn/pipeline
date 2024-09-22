@@ -3,7 +3,7 @@ class InputOutput():
     def __init__(self, spark: SparkSession):
         self.spark = spark
 
-    def getDummyAddress(self) -> list[str]:
+    def get_dummy_address(self) -> list[str]:
         address = ["""
                 {
                     "Unit": 1,
@@ -25,7 +25,7 @@ class InputOutput():
                 }"""]
         return address
 
-    def getDummyCitizenship(self):
+    def get_dummy_citizenship(self):
         return ["""
         [
             {
@@ -49,10 +49,10 @@ class InputOutput():
                 }
             ]
             """]
-    def getDummyData(self) -> DataFrame:
-        address = self.getDummyAddress()
+    def get_dummy_data(self) -> DataFrame:
+        address = self.get_dummy_address()
 
-        citizenship = self.getDummyCitizenship()
+        citizenship = self.get_dummy_citizenship()
 
         data = [["Maral", "Pourdayan", address[0], citizenship[0], ["Databricks Data Engineer", "Databricks Spark Developer"]],
                 ["Hossein", "Bakhtiari", address[1], citizenship[1],
@@ -64,5 +64,5 @@ class InputOutput():
 
         return dataframe
 
-    def getParquet(self) -> DataFrame:
+    def get_from_parquet(self) -> DataFrame:
         pass

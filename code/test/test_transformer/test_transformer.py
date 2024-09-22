@@ -15,8 +15,8 @@ class TestTransformer(TestBase):
         self.io = InputOutput(self.spark)
 
     def test_flatten_address(self):
-        df = self.io.getDummyData()
-        citizenship = self.io.getDummyCitizenship()
+        df = self.io.get_dummy_data()
+        citizenship = self.io.get_dummy_citizenship()
 
         data = [
             ["Maral", "Pourdayan", 1, 41, "Evan Avenue", "Mosman", "NSW", 1234, citizenship[0], ["Databricks Data Engineer", "Databricks Spark Developer"]],
@@ -26,8 +26,8 @@ class TestTransformer(TestBase):
         columns = ["Name", "Family", "Unit", "Street No", "Street Name", "Suburb", "State", "Postal Code", "Citizenship", "Certificate"]
 
         dataframe = self.spark.createDataFrame(data, columns)
-        address_schema = SchemaRepository().getSchema(SchemaEnum.ADDRESS)
-        desired_df = (self.transformer.flattenAddress(df, address_schema).drop(F.col("Address"))
+        address_schema = SchemaRepository().get_schema(SchemaEnum.ADDRESS)
+        desired_df = (self.transformer.flatten_address(df, address_schema).drop(F.col("Address"))
                       .select(F.col("Name"),
                               F.col("Family"),
                               F.col("adr.Unit").alias("Unit"),
@@ -39,7 +39,7 @@ class TestTransformer(TestBase):
                               F.col("Citizenship"),
                               F.col("Certificate"))
                       )
-        self.assertDataFrameEqual(dataframe, desired_df)
+        self.assert_data_frame_equal(dataframe, desired_df)
 
     def test_flatten_citizenship(self):
         pass
